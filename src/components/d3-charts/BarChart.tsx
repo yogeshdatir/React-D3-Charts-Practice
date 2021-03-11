@@ -1,23 +1,31 @@
-import { FC, useEffect, useRef } from "react";
-import { select } from "d3-selection";
+import { FC, useEffect, useRef, useState } from "react";
+import { select, Selection } from "d3-selection";
+
+const data = [{ width: 200, height: 200, color: "blue" }];
 
 const BarChart: FC = () => {
-  const chartRef = useRef<SVGSVGElement | null>(null);
+  const chartRef = useRef(null);
+  const [selection, setSelection] = useState<null | Selection<
+    null,
+    unknown,
+    null,
+    undefined
+  >>(null);
 
   useEffect(() => {
     // console.log(select(chartRef.current));
 
-    const svg = select(chartRef.current).style("outline", "thin solid red");
-
-    svg
-      .append("rect")
-      .attr("width", "20")
-      .attr("height", "20")
-      .attr("fill", "none")
-      .attr("stroke", "blue")
-      .attr("x", 20)
-      .attr("y", 20);
-  }, []);
+    if (!selection) {
+      setSelection(select(chartRef.current).style("outline", "thin solid red"));
+    } else {
+      selection
+        .data(data)
+        .append("rect")
+        .attr("width", (d) => d.width)
+        .attr("height", (d) => d.height)
+        .attr("fill", (d) => d.color);
+    }
+  }, [selection]);
   return (
     <div>
       <svg ref={chartRef}></svg>
