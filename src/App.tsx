@@ -24,6 +24,12 @@ export default function App() {
           stroke="blue"
           strokeWidth="10"
         ></rect>
+        <path
+          fill="none"
+          stroke="black"
+          strokeWidth="5"
+          d="M100,100 150,300"
+        ></path>
       </svg>
     </div>
   );
