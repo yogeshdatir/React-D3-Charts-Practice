@@ -1,4 +1,4 @@
 # ToDo List:
 
 - [x] Add data to the svg
-- [ ] Add rect for each data array
+- [x] Add rect for each element in data array

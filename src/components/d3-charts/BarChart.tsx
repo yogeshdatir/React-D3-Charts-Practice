@@ -1,7 +1,32 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { select, Selection } from "d3-selection";
 
-const data = [{ width: 200, height: 200, color: "blue" }];
+const data = [
+  {
+    date: 1493922600000,
+    units: 320
+  },
+  {
+    date: 1494009000000,
+    units: 552
+  },
+  {
+    date: 1494095400000,
+    units: 342
+  },
+  {
+    date: 1494181800000,
+    units: 431
+  },
+  {
+    date: 1494268200000,
+    units: 251
+  },
+  {
+    date: 1494354600000,
+    units: 445
+  }
+];
 
 const BarChart: FC = () => {
   const chartRef = useRef(null);
@@ -16,19 +41,31 @@ const BarChart: FC = () => {
     // console.log(select(chartRef.current));
 
     if (!selection) {
-      setSelection(select(chartRef.current).style("outline", "thin solid red"));
+      setSelection(
+        select(chartRef.current)
+          .attr("width", "100hw")
+          .attr("height", "100vh")
+          .style("outline", "thin solid red")
+      );
     } else {
-      selection
+      const rects = selection
+        .selectAll("rect")
         .data(data)
-        .append("rect")
-        .attr("width", (d) => d.width)
-        .attr("height", (d) => d.height)
-        .attr("fill", (d) => d.color);
+        // join add or removes elements to match the number of data elements
+        .join("rect")
+        .attr("fill", "blue")
+        .attr("width", 20)
+        .attr("height", (d) => d.units)
+        .attr("x", (_, index) => index * 22);
+
+      console.log(rects);
     }
   }, [selection]);
   return (
     <div>
-      <svg ref={chartRef}></svg>
+      <svg ref={chartRef}>
+        <rect />
+      </svg>
     </div>
   );
 };
