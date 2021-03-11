@@ -52,10 +52,22 @@ const BarChart: FC = () => {
         .selectAll("rect")
         .data(data)
         // join add or removes elements to match the number of data elements
-        .join("rect")
-        .attr("fill", "blue")
+        // .join("rect")
+        // we can customize enter, update and exit by ourselves as well
+        .join(
+          (enter) => {
+            return enter.append("rect").attr("fill", "red");
+          },
+          (update) => {
+            return update.attr("fill", "yellow");
+          },
+          (exit) => {
+            return exit.remove();
+          }
+        )
+        // .attr("fill", "blue")
         .attr("width", 20)
-        .attr("height", (d) => d.units)
+        .attr("height", 20)
         .attr("x", (_, index) => index * 22);
 
       console.log(rects);
@@ -64,6 +76,7 @@ const BarChart: FC = () => {
   return (
     <div>
       <svg ref={chartRef}>
+        <rect />
         <rect />
       </svg>
     </div>
