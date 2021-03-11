@@ -69,3 +69,12 @@ Selection object:
 
 All selection methods:
 https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
+
+# Steps for drawing a chart
+
+1. Get Data
+2. Draw Chart Dimensions
+3. Draw Image
+4. Create Scales
+5. Draw Axis
+6. Add Animations and Events
