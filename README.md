@@ -42,3 +42,30 @@ Created with CodeSandbox
    ```
 
 Here's helpful document: https://observablehq.com/@d3/d3-path
+
+### d3 object
+
+d3 object is a global object defined by d3 library.
+
+### Selections
+
+Selections are JavaScript objects that represent HTML elements in the document (DOM).
+
+Transform the DOM by selecting elements and joining to data.
+d3 Official Doc: https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
+
+Elements may be selected using a variety of predicates, including containment, attribute values, class and ID.
+
+D3 provides numerous methods for mutating nodes: setting attributes or styles; registering event listeners; adding, removing or sorting nodes; and changing HTML or text content. These suffice for the vast majority of needs. Direct access to the underlying DOM is also possible, as each D3 selection is simply an array of nodes.
+
+`d3.selectAll("p").style("color", "blue");`
+
+`d3.select("body").style("background-color", "black");`
+
+Official Doc D3: https://d3js.org/
+
+Selection object:
+`Selection {_groups: Array(1), _parents: Array(1), constructor: Object, select: ƒ $csb__default(), selectAll: ƒ $csb__default()…}`
+
+All selection methods:
+https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
