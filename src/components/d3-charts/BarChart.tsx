@@ -1,86 +1,51 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { select, Selection } from "d3-selection";
+import React, { useEffect, useRef } from 'react'
+import { select } from "d3"
 
-const data = [
-  {
-    date: 1493922600000,
-    units: 320
-  },
-  {
-    date: 1494009000000,
-    units: 552
-  },
-  {
-    date: 1494095400000,
-    units: 342
-  },
-  {
-    date: 1494181800000,
-    units: 431
-  },
-  {
-    date: 1494268200000,
-    units: 251
-  },
-  {
-    date: 1494354600000,
-    units: 445
-  }
-];
+interface IProps {
+  data: any
+}
 
-const BarChart: FC = () => {
-  const chartRef = useRef(null);
-  const [selection, setSelection] = useState<null | Selection<
-    null,
-    unknown,
-    null,
-    undefined
-  >>(null);
+// Dimensions
+const dimensions = {
+  width: 800,
+  height: 400
+}
+
+const BarChart = (props: IProps) => {
+  const svgRef = useRef(null)
 
   useEffect(() => {
-    // console.log(select(chartRef.current));
+    //  Draw Image
+    const svg = select(svgRef.current)
+      .attr('width', dimensions.width)
+      .attr('height', dimensions.height)
+    console.log(svg)
+    addAxes(svg);
+    addBars(svg);
+    addText(svg);
+  }, [])
 
-    if (!selection) {
-      setSelection(
-        select(chartRef.current)
-          .attr("width", "100hw")
-          .attr("height", "100vh")
-          .style("outline", "thin solid red")
-      );
-    } else {
-      const rects = selection
-        .selectAll("rect")
-        .data(data)
-        // join add or removes elements to match the number of data elements
-        // .join("rect")
-        // we can customize enter, update and exit by ourselves as well
-        .join(
-          (enter) => {
-            return enter.append("rect").attr("fill", "red");
-          },
-          (update) => {
-            return update.attr("fill", "yellow");
-          },
-          (exit) => {
-            return exit.remove();
-          }
-        )
-        // .attr("fill", "blue")
-        .attr("width", 20)
-        .attr("height", 20)
-        .attr("x", (_, index) => index * 22);
+  const addAxes = (svg: any) => {
+  }
 
-      console.log(rects);
-    }
-  }, [selection]);
+  const addBars = (svg: any) => {
+  }
+
+  const addText = (svg: any) => {
+  }
+
+  // const xscale
+
+  // const yscale
+
   return (
-    <div>
-      <svg ref={chartRef}>
-        <rect />
-        <rect />
+    <div className="canvas">
+      <svg
+        ref={svgRef}
+      >
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default BarChart;
+export default BarChart
