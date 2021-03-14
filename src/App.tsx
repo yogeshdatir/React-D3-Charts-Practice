@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import BarChart from "./components/d3-charts/BarChart";
 
-function App() {
+export default function App() {
+  const [data, setData] = useState([]);
+
+  // Get Data
+  const fetchData = async () => {
+    const dataFromAPI = await axios.get("https://canvasjs.com/services/data/datapoints.php?xstart=1&ystart=10&length=100&type=json").then(res => {
+      return res.data
+    }).catch(e => console.log(e))
+    // console.log(JSON.parse(dataFromAPI))
+    setData(dataFromAPI);
+  };
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Start editing to see some magic happen!</h2>
+      <BarChart data={data} />
     </div>
   );
 }
-
-export default App;
