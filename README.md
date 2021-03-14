@@ -1,7 +1,5 @@
 # React-D3-Charts-Practice
 
-Created with CodeSandbox
-
 ### In D3, there 4 elements to draw different shapes:
 
 1. `<rect></rect>`
@@ -70,6 +68,8 @@ Selection object:
 All selection methods:
 https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
 
+
+
 # Steps for drawing a chart
 
 1. Get Data
@@ -78,3 +78,9 @@ https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
 4. Create Scales
 5. Draw Axis
 6. Add Animations and Events
+
+## Margins in d3
+
+![image-20210314132004211](D:\Shared Workspace\React D3\React-D3-Charts-Practice-main\d3-margins)
+
+To apply margin, another element 'g' is added with attribute transform-translate to move the starting point (0,0) of the chart inside the svg boundaries. 
